@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>LoggedInUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Wide</columnSize>
@@ -26,7 +26,6 @@
     <rightSection>
         <columnSize>Medium</columnSize>
     </rightSection>
-    <runningUser>outrunai6.25650efa3fc6@agentforce.com</runningUser>
     <textColor>#000000</textColor>
     <title>Insurance Agency - Pending Prospects</title>
     <titleColor>#000000</titleColor>

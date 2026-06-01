@@ -30,7 +30,11 @@ against the org with `sf project deploy start --dry-run` (0 errors).
 3. **Opportunity layout** also includes `AccountId` and `Probability` — the org
    requires these fields on the layout.
 4. **Dashboard** uses `autoselectColumnsFromReport`; CloseDate-ascending order is
-   noted in the component footer.
+   enforced by the source report (`sortColumn=CLOSE_DATE`, `sortOrder=Asc`) and
+   preserved by the table.
+5. **Dashboard running user:** `dashboardType=LoggedInUser` (dynamic dashboard) —
+   runs as the logged-in user, no hard-coded `runningUser`. Portable across users
+   and environments; validated to be supported by this edition.
 
 ## Comment 1 — Lightning record page (Chatter + Activity visibility)
 
