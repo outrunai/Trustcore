@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Pending Opportunities - Insurance Agency</name>
+    <reportType>Opportunity</reportType>
+    <format>Tabular</format>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <columns>
+        <field>OPPORTUNITY_NAME</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Policy_Number__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Insurance_Company__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.Application_Status__c</field>
+    </columns>
+    <columns>
+        <field>FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>CLOSE_DATE</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>STAGE_NAME</column>
+            <operator>equals</operator>
+            <value>Pending</value>
+        </criteriaItems>
+    </filter>
+</Report>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requirement__c</fullName>
+    <label>Requirement</label>
+    <type>TextArea</type>
+    <required>false</required>
+    <description>Activities (Task/Event) do not support Long Text Area; using Text Area (255 chars) instead.</description>
+</CustomField>
