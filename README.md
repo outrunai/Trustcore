@@ -18,6 +18,7 @@ against the org with `sf project deploy start --dry-run` (0 errors).
 | 6 | Custom fields added | Task Layout |
 | 7 | **Pending Opportunities - Insurance Agency** in public folder | Report + ReportFolder |
 | 8 | **Insurance Agency - Pending Prospects** (table from the report) | Dashboard + DashboardFolder |
+| C1 | **Opportunity Insurance Agency Record Page** (Lightning page) + org-default assignment | FlexiPage + Opportunity actionOverride |
 
 ## Deviations from the original plan (forced by platform limits)
 
@@ -30,6 +31,27 @@ against the org with `sf project deploy start --dry-run` (0 errors).
    requires these fields on the layout.
 4. **Dashboard** uses `autoselectColumnsFromReport`; CloseDate-ascending order is
    noted in the component footer.
+
+## Comment 1 — Lightning record page (Chatter + Activity visibility)
+
+`flexipages/Opportunity_Insurance_Agency_Record_Page` is a Lightning record page
+(template `flexipage:recordHomeTemplateDesktop`) laid out in the requested order:
+
+- **header:** Highlights Panel
+- **main:** Record Detail (renders the assigned `Insurance Agency Layout`) →
+  **Chatter** publisher → **Activity** timeline (Tasks/Events)
+- **sidebar:** Related Lists
+
+It is set as the **org-default** Opportunity record page (desktop) via an
+`actionOverrides/View` entry in `objects/Opportunity/Opportunity.object-meta.xml`.
+
+Platform notes:
+- `forceChatter:feed` cannot be placed directly in a page region (only inside a
+  Tabs facet); the deployable Chatter component for the main column is
+  `forceChatter:publisher` (`context=RECORD`), used here. The full feed history
+  is still available through the Activity/Collaborate tabs.
+- Per-profile/app page assignment is not representable in source metadata; the
+  org-default assignment guarantees all desktop users get this page.
 
 ## Deploy
 
