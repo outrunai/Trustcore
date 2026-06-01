@@ -5,6 +5,8 @@
     <format>Tabular</format>
     <scope>organization</scope>
     <showDetails>true</showDetails>
+    <sortColumn>CLOSE_DATE</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <columns>
         <field>OPPORTUNITY_NAME</field>
     </columns>
