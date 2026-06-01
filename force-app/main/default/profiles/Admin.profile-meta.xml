@@ -3,6 +3,35 @@
     <layoutAssignments>
         <layout>Opportunity-Insurance Agency Layout</layout>
     </layoutAssignments>
+    <objectPermissions>
+        <object>Task_Detail__c</object>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <fieldPermissions>
+        <field>Task_Detail__c.Requirement__c</field>
+        <editable>true</editable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Task_Detail__c.Worker_Response__c</field>
+        <editable>true</editable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Task_Detail__c.Opportunity__c</field>
+        <editable>true</editable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Task_Detail__c.Task_Id__c</field>
+        <editable>true</editable>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <field>Opportunity.SSN__c</field>
         <editable>true</editable>

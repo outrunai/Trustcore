@@ -24,9 +24,10 @@ against the org with `sf project deploy start --dry-run` (0 errors).
 
 1. **`SSN__c` is `Text(20)`**, not `EncryptedText` — org has no Classic/Shield
    Encryption. Protected via Field-Level Security. (Was the plan's fallback.)
-2. **`Requirement__c` / `Worker_Response__c` are `Text Area (255)`**, not
-   `LongTextArea(32768)` — Salesforce does **not** allow Long Text Area on
-   Activities (Task/Event).
+2. **Long-form Task text → `Task_Detail__c`** (see section below). Activities
+   (Task/Event) do not support Long Text Area, so the Activity
+   `Requirement__c` / `Worker_Response__c` fields are kept as short **Text Area
+   (255)** summaries and the full narrative is stored on a custom object.
 3. **Opportunity layout** also includes `AccountId` and `Probability` — the org
    requires these fields on the layout.
 4. **Dashboard** uses `autoselectColumnsFromReport`; CloseDate-ascending order is
@@ -35,6 +36,31 @@ against the org with `sf project deploy start --dry-run` (0 errors).
 5. **Dashboard running user:** `dashboardType=LoggedInUser` (dynamic dashboard) —
    runs as the logged-in user, no hard-coded `runningUser`. Portable across users
    and environments; validated to be supported by this edition.
+
+## Long-form Task text — `Task_Detail__c`
+
+Salesforce caps Activity (Task/Event) custom fields at 255 chars (no Long Text
+Area) **and** does not allow custom lookup relationships that target
+Task/Activity. To store the full insurer requirement and worker response without
+truncation, long-form content lives on a dedicated custom object:
+
+- **`Task_Detail__c`** (AutoNumber name `TD-{00000}`)
+  - `Requirement__c` — **Long Text Area (32,768)**
+  - `Worker_Response__c` — **Long Text Area (32,768)**
+  - `Opportunity__c` — Lookup to Opportunity (relationship `Task Details`)
+  - `Task_Id__c` — Text(18) External Id holding the originating Task's Id
+    (reference back, since a Task lookup is not allowed)
+
+**Reachable from the Task workflow:** agents work Tasks in the context of an
+Opportunity (`WhatId`). `Task_Detail__c` is a child of that Opportunity and
+appears in the **Task Details** related list on the Opportunity Lightning record
+page (the `relatedListContainer` already in the FlexiPage), so the full text is
+created/edited from the same record workflow. The Task keeps short **(Summary)**
+fields with inline help pointing to the related Task Detail. FLS + object
+permissions for `Task_Detail__c` are granted to the Admin and Standard profiles.
+
+> Trade-off: linkage to the Task is by stored Id (`Task_Id__c`) rather than a
+> native lookup, because the platform forbids custom lookups to Task/Activity.
 
 ## Comment 1 — Lightning record page (Chatter + Activity visibility)
 

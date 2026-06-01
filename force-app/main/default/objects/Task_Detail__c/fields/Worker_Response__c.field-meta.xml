@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Worker_Response__c</fullName>
+    <label>Worker Response</label>
+    <type>LongTextArea</type>
+    <length>32768</length>
+    <visibleLines>10</visibleLines>
+    <required>false</required>
+    <description>Full worker response text (long-form). The Task carries a short summary in Activity.Worker_Response__c.</description>
+</CustomField>

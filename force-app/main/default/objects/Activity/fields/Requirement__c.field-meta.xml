@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Requirement__c</fullName>
-    <label>Requirement</label>
+    <label>Requirement (Summary)</label>
     <type>TextArea</type>
     <required>false</required>
-    <description>Activities (Task/Event) do not support Long Text Area; using Text Area (255 chars) instead.</description>
+    <inlineHelpText>Short summary only (255 chars). For the full long-form requirement, use the related Task Detail record on the Opportunity (Task Details related list).</inlineHelpText>
+    <description>Short-form summary. Full long-form text lives in Task_Detail__c.Requirement__c (Long Text Area), since Activities do not support Long Text Area.</description>
 </CustomField>
